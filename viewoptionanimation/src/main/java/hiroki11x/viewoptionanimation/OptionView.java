@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 /**
  * Created by hirokinaganuma on 16/09/03.
@@ -20,6 +19,7 @@ public class OptionView extends FrameLayout {
 
     private static int option_index = 0;
 
+    private boolean is_option_appear = false;
     private int optionnum =3;
     private @DrawableRes int srcImageId;
     private @DrawableRes int optionImgResoureceId[] = new int[3];
@@ -39,8 +39,22 @@ public class OptionView extends FrameLayout {
     View.OnLongClickListener longclicklistener = new OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
-            Toast.makeText(getContext(),"OnLongClicked",Toast.LENGTH_LONG).show();
+//            Toast.makeText(getContext(),"OnLongClicked",Toast.LENGTH_LONG).show();
+            for(int i = 0;i<optionnum;i++){
+                SwipeAnimation.alphaPlusTransTest(imgbutton[i]);
+            }
+            is_option_appear = true;
             return true;
+        }
+    };
+
+    View.OnClickListener clicklistener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            is_option_appear = false;
+            for(int i = 0;i<optionnum;i++){
+                SwipeAnimation.disappearAnimation(imgbutton[i]);
+            }
         }
     };
 
@@ -93,6 +107,10 @@ public class OptionView extends FrameLayout {
         imgbutton[1] = (ImageButton)layout.findViewById(R.id.imageButton2);
         imgbutton[2] = (ImageButton)layout.findViewById(R.id.imageButton3);
         srcImage = (ImageView)layout.findViewById(R.id.imageView);
+        for(int i = 0;i<optionnum;i++){
+            imgbutton[i].setVisibility(View.INVISIBLE);
+        }
+
     }
 
 
@@ -110,6 +128,7 @@ public class OptionView extends FrameLayout {
     //XMLからの各種初期化
     public void initImageResource(){
         this.setOnLongClickListener(longclicklistener);
+        this.setOnClickListener(clicklistener);
         srcImage.setImageResource(srcImageId);
         for(int i = 0; i<optionnum ;i++){
             this.imgbutton[i].setImageResource(optionImgResoureceId[i]);
