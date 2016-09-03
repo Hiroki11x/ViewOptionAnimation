@@ -4,12 +4,12 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
+import android.widget.ImageView;
 
 /**
  * Created by hirokinaganuma on 16/09/03.
  */
-public class OptionView extends View {
+public class OptionView extends ImageView {
 
 
 
@@ -25,12 +25,10 @@ public class OptionView extends View {
     */
 
     public OptionView(Context context, AttributeSet attrs, int defStyleAttr) {
-
         super(context, attrs, defStyleAttr);
     }
 
     public OptionView(Context context, AttributeSet attrs) {
-
         super(context, attrs);
     }
 
