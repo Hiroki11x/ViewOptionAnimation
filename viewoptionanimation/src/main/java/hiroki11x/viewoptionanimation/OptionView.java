@@ -18,6 +18,7 @@ import android.widget.Toast;
  */
 public class OptionView extends FrameLayout {
 
+    private static int option_index = 0;
 
     private int optionnum =3;
     private @DrawableRes int srcImageId;
@@ -32,6 +33,7 @@ public class OptionView extends FrameLayout {
 
     public void setSrcImageResource(@DrawableRes int srcImageId) {
         this.srcImageId = srcImageId;
+        this.srcImage.setImageResource(srcImageId);
     }
 
     View.OnLongClickListener longclicklistener = new OnLongClickListener() {
@@ -41,6 +43,13 @@ public class OptionView extends FrameLayout {
             return true;
         }
     };
+
+
+    public void setOptionListeners(View.OnClickListener listeners[]){
+        for(int i = 0;i<optionnum;i++){
+            imgbutton[i].setOnClickListener(listeners[i]);
+        }
+    }
 
     // for api 21 ~
     /*
@@ -57,44 +66,64 @@ public class OptionView extends FrameLayout {
         optionnum = typedArray.getInt(R.styleable.OptionView_option_num, 0);//XML設定された項目はここで読み取れる
         srcImageId = typedArray.getInt(R.styleable.OptionView_src_image_id, 0);//XML設定された項目はここで読み取れる
         typedArray.recycle();
-        init();
+        initFromXML(context, attrs);
     }
 
 
     //ここがデフォで呼ばれてる
+    //XMLからの設定はここ
     public OptionView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        initViewFromID(context);
+        initFromXML(context, attrs);
+        initImageResource();
+    }
+
+    //Call しない想定
+    public OptionView(Context context) {
+        super(context);
+        initImageResource();
+    }
+
+    public void initViewFromID(Context context){
         View layout = LayoutInflater.from(context).inflate(R.layout.optionviewlayout, this);
 
         imgbutton[0] = (ImageButton)layout.findViewById(R.id.imageButton);
         imgbutton[1] = (ImageButton)layout.findViewById(R.id.imageButton2);
         imgbutton[2] = (ImageButton)layout.findViewById(R.id.imageButton3);
         srcImage = (ImageView)layout.findViewById(R.id.imageView);
+    }
 
+
+    public void initFromXML(Context context, AttributeSet attrs){
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.OptionView);
         optionnum = typedArray.getInt(R.styleable.OptionView_option_num, 0);
         srcImageId = typedArray.getResourceId(R.styleable.OptionView_src_image_id, 0);
         optionImgResoureceId[0] = typedArray.getResourceId(R.styleable.OptionView_option_image_id1, 0);
         optionImgResoureceId[1] = typedArray.getResourceId(R.styleable.OptionView_option_image_id2, 0);
-        optionImgResoureceId[2] = typedArray.getResourceId(R.styleable.OptionView_option_image_id3, 0);//
+        optionImgResoureceId[2] = typedArray.getResourceId(R.styleable.OptionView_option_image_id3, 0);
         typedArray.recycle();
-        init();
     }
 
-    //Call しない想定
-    public OptionView(Context context) {
-        super(context);
-        init();
-    }
 
-    //各種初期化
-    public void init(){
+    //XMLからの各種初期化
+    public void initImageResource(){
         this.setOnLongClickListener(longclicklistener);
         srcImage.setImageResource(srcImageId);
         for(int i = 0; i<optionnum ;i++){
             this.imgbutton[i].setImageResource(optionImgResoureceId[i]);
         }
     }
+
+    //XML使わない場合
+    public void addOption(@DrawableRes int resId, View.OnClickListener listener){
+        this.optionImgResoureceId[option_index] = resId;
+        imgbutton[option_index].setOnClickListener(listener);
+        this.imgbutton[option_index].setImageResource(resId);
+        option_index++;
+    }
+
 
 //    @Override
 //    protected void onLayout(boolean changed, int l, int t, int r, int b) {
