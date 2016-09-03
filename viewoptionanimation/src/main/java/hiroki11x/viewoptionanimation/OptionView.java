@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Created by hirokinaganuma on 16/09/03.
@@ -20,12 +21,16 @@ public class OptionView extends FrameLayout {
     private static int option_index = 0;
 
     private boolean is_option_appear = false;
-    private int optionnum =3;
+    private int optionnum = 3;
     private @DrawableRes int srcImageId;
     private @DrawableRes int optionImgResoureceId[] = new int[3];
 
     private ImageButton imgbutton[] = new ImageButton[3];
+    private TextView textview[] = new TextView[3];
+    private FrameLayout optionframe[] = new FrameLayout[3];
     private ImageView srcImage;
+
+    private FrameLayout BlackFilter;
 
     public void setSrcImage(ImageView srcImage) {
         this.srcImage = srcImage;
@@ -39,10 +44,11 @@ public class OptionView extends FrameLayout {
     View.OnLongClickListener longclicklistener = new OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
-//            Toast.makeText(getContext(),"OnLongClicked",Toast.LENGTH_LONG).show();
             for(int i = 0;i<optionnum;i++){
-                SwipeAnimation.alphaPlusTransTest(imgbutton[i]);
+                SwipeAnimation.slideInAnimation(imgbutton[i]);
+                SwipeAnimation.slideInAnimation(textview[i]);
             }
+            SwipeAnimation.appearAnimation(BlackFilter);
             is_option_appear = true;
             return true;
         }
@@ -51,10 +57,16 @@ public class OptionView extends FrameLayout {
     View.OnClickListener clicklistener = new OnClickListener() {
         @Override
         public void onClick(View v) {
+            if(!is_option_appear){
+                return;
+            }
+
             is_option_appear = false;
             for(int i = 0;i<optionnum;i++){
-                SwipeAnimation.disappearAnimation(imgbutton[i]);
+                SwipeAnimation.slideOutAnimation(imgbutton[i]);
+                SwipeAnimation.slideOutAnimation(textview[i]);
             }
+            SwipeAnimation.disappearAnimation(BlackFilter);
         }
     };
 
@@ -102,15 +114,22 @@ public class OptionView extends FrameLayout {
 
     public void initViewFromID(Context context){
         View layout = LayoutInflater.from(context).inflate(R.layout.optionviewlayout, this);
-
+        BlackFilter = (FrameLayout)layout.findViewById(R.id.black_filter);
         imgbutton[0] = (ImageButton)layout.findViewById(R.id.imageButton);
         imgbutton[1] = (ImageButton)layout.findViewById(R.id.imageButton2);
         imgbutton[2] = (ImageButton)layout.findViewById(R.id.imageButton3);
+        textview[0] = (TextView)layout.findViewById(R.id.textView);
+        textview[1] = (TextView)layout.findViewById(R.id.textView2);
+        textview[2] = (TextView)layout.findViewById(R.id.textView3);
+        optionframe[0] = (FrameLayout)layout.findViewById(R.id.framelayout);
+        optionframe[0] = (FrameLayout)layout.findViewById(R.id.framelayout2);
+        optionframe[0] = (FrameLayout)layout.findViewById(R.id.framelayout3);
         srcImage = (ImageView)layout.findViewById(R.id.imageView);
         for(int i = 0;i<optionnum;i++){
             imgbutton[i].setVisibility(View.INVISIBLE);
+            textview[i].setVisibility(View.INVISIBLE);
         }
-
+        BlackFilter.setVisibility(View.INVISIBLE);
     }
 
 
@@ -124,7 +143,6 @@ public class OptionView extends FrameLayout {
         typedArray.recycle();
     }
 
-
     //XMLからの各種初期化
     public void initImageResource(){
         this.setOnLongClickListener(longclicklistener);
@@ -136,18 +154,13 @@ public class OptionView extends FrameLayout {
     }
 
     //XML使わない場合
-    public void addOption(@DrawableRes int resId, View.OnClickListener listener){
+    public void addOption(@DrawableRes int resId,String text ,View.OnClickListener listener){
         this.optionImgResoureceId[option_index] = resId;
+        this.textview[option_index].setText(text);
         imgbutton[option_index].setOnClickListener(listener);
         this.imgbutton[option_index].setImageResource(resId);
         option_index++;
     }
-
-
-//    @Override
-//    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-//
-//    }
 
     public void setOptionnum(int optionnum) {
         this.optionnum = optionnum;
@@ -157,30 +170,6 @@ public class OptionView extends FrameLayout {
         optionImgResoureceId = resId;
     }
 
-
-//    @Override
-//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        // このViewGroupに指定されているレイアウトのモードを取得する
-//        final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-//        final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-//
-//        if (widthMode != MeasureSpec.EXACTLY || heightMode != MeasureSpec.EXACTLY) {
-//            // レイアウトモードがEXACTLY以外のときはエラーにする
-//            throw new IllegalStateException("Must measure with an exact width");
-//        }
-//
-//        // このViewGroupに割り当てられているサイズを取得する
-//        final int widthSize = MeasureSpec.getSize(widthMeasureSpec);
-//        final int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-//
-//        // このViewGroupのサイズをセットする
-//        setMeasuredDimension(widthSize, heightSize);
-//    }
-
-    /**
-     * 画面サイズ変更時の通知
-     * @param w, h, oldw, oldh
-     */
     protected void onSizeChanged(int w, int h, int oldw, int oldh){
         Log.v("View", "onSizeChanged Width:" + w + ",Height:" + h);
     }

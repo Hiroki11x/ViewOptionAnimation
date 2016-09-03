@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
         //以下のようなセットの仕方が可能(推奨)
         //一応XMLからもできる
-        optionView.addOption(R.drawable.copy_link_white,listeners[0]);
-        optionView.addOption(R.drawable.share_symbol_white,listeners[1]);
-        optionView.addOption(R.drawable.eye_white,listeners[2]);
+        optionView.addOption(R.drawable.copy_link_white,"Copy Link",listeners[0]);
+        optionView.addOption(R.drawable.share_symbol_white,"Share",listeners[1]);
+        optionView.addOption(R.drawable.eye_white,"View Detail",listeners[2]);
 
         /**
         optionView.addOption(resId, listener)
