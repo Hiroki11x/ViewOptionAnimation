@@ -38,7 +38,6 @@ public class OptionView extends FrameLayout {
         @Override
         public boolean onLongClick(View v) {
             Toast.makeText(getContext(),"OnLongClicked",Toast.LENGTH_LONG).show();
-            Log.d("onLongClick","longclick");
             return true;
         }
     };
@@ -65,7 +64,6 @@ public class OptionView extends FrameLayout {
     //ここがデフォで呼ばれてる
     public OptionView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        Log.d("Call", "OptionView(Context context, AttributeSet attrs)");
         View layout = LayoutInflater.from(context).inflate(R.layout.optionviewlayout, this);
 
         imgbutton[0] = (ImageButton)layout.findViewById(R.id.imageButton);
@@ -79,9 +77,6 @@ public class OptionView extends FrameLayout {
         optionImgResoureceId[0] = typedArray.getResourceId(R.styleable.OptionView_option_image_id1, 0);
         optionImgResoureceId[1] = typedArray.getResourceId(R.styleable.OptionView_option_image_id2, 0);
         optionImgResoureceId[2] = typedArray.getResourceId(R.styleable.OptionView_option_image_id3, 0);//
-        Log.d("RESID 0: ",typedArray.getResourceId(R.styleable.OptionView_option_image_id1, 0)+"");
-        Log.d("RESID 1: ",optionImgResoureceId[1]+"");
-        Log.d("RESID 2: ",optionImgResoureceId[2]+"");
         typedArray.recycle();
         init();
     }
@@ -94,7 +89,6 @@ public class OptionView extends FrameLayout {
 
     //各種初期化
     public void init(){
-        Log.d("Call", "init()");
         this.setOnLongClickListener(longclicklistener);
         srcImage.setImageResource(srcImageId);
         for(int i = 0; i<optionnum ;i++){
