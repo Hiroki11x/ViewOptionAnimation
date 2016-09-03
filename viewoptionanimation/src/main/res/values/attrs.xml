@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="OptionView">
+        <attr name="option_num" format="integer" />
+        <attr name="src_image_id" format="reference" />
+        <attr name="option_image_id1" format="reference" />
+        <attr name="option_image_id2" format="reference" />
+        <attr name="option_image_id3" format="reference" />
+
+
+        <!-- 多分、colorとreferenceどちらも指定できるんだと思う -->
+        <attr name="foo" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="Themes">
+        <attr name="originalViewStyle" format="reference" />
+    </declare-styleable>
+</resources>
+
+    <!--今の所適当-->
+    <!--Viewで必要になりそうなパラメタをattrs.xmlに定義します。-->
