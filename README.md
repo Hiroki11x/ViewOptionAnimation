@@ -66,11 +66,11 @@ public class MyActivity extends Activity {
               .build();
 
     //it is possible to set image from Uri
-        optionView.addOption()
-                .imageUri(Uri.parse("http://hoge.com.png"))
-                .listener(listeners[2])
-                .text("Copy Link")
-                .build();
+    optionView.addOption()
+             .imageUri(Uri.parse("http://hoge.com.png"))
+             .listener(listeners[2])
+             .text("Copy Link")
+             .build();
 
   }
 }
