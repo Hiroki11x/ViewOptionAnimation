@@ -1,5 +1,6 @@
 package hiroki11x.viewoptionanimation.example;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -39,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
         };
 
         optionView = (OptionView) findViewById(R.id.optionView);
-
-        //以下のようなセットの仕方が可能(推奨)
-        //一応XMLからもできる
         optionView.setSrcImageResource(R.drawable.sample_image);
 
         optionView.addOption()
@@ -50,13 +48,12 @@ public class MainActivity extends AppCompatActivity {
                 .text("Share")
                 .build();
 
-        //XMLのattributeからセットすることも可能
         optionView.addOption()
                 .listener(listeners[1])
                 .build();
 
         optionView.addOption()
-                .resId(R.drawable.copy_link_white)
+                .imageUri(Uri.parse("http://icons.iconarchive.com/icons/custom-icon-design/mono-general-2/512/copy-icon.png"))
                 .listener(listeners[2])
                 .text("Copy Link")
                 .build();

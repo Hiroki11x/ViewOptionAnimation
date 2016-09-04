@@ -3,6 +3,7 @@ package hiroki11x.viewoptionanimation;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -19,7 +20,6 @@ import android.widget.TextView;
 public class OptionView extends FrameLayout {
 
     private final Builder builder = new Builder();
-
     private int option_index = 0;
 
     private boolean is_option_appear = false;
@@ -33,8 +33,10 @@ public class OptionView extends FrameLayout {
     private ImageButton imgbuttons[] = new ImageButton[3];
     private TextView textviews[] = new TextView[3];
     private ImageView srcImage;
-
     private FrameLayout BlackFilter;
+
+    private int option_image_width;
+    private int option_image_height;
 
     public void setSrcImage(ImageView srcImage) {
         this.srcImage = srcImage;
@@ -81,13 +83,10 @@ public class OptionView extends FrameLayout {
     }
     */
 
-    //Call しない想定
     public OptionView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-
-    //ここがデフォで呼ばれてる
     public OptionView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -96,13 +95,11 @@ public class OptionView extends FrameLayout {
         initResource();
     }
 
-    //Call しない想定
     public OptionView(Context context) {
         super(context);
         initResource();
     }
 
-    //IDの関連づけなど
     public void initViewFromID(Context context) {
         View layout = LayoutInflater.from(context).inflate(R.layout.optionviewlayout, this);
         BlackFilter = (FrameLayout) layout.findViewById(R.id.black_filter);
@@ -131,10 +128,15 @@ public class OptionView extends FrameLayout {
         titles[0] = typedArray.getString(R.styleable.OptionView_option_text_id1);
         titles[1] = typedArray.getString(R.styleable.OptionView_option_text_id2);
         titles[2] = typedArray.getString(R.styleable.OptionView_option_text_id3);
+        for(int i = 0;i<3;i++){
+            textviews[i].setTextSize(typedArray.getDimension(R.styleable.OptionView_option_text_sp,3));
+        }
+        option_image_width = (int)typedArray.getDimension(R.styleable.OptionView_option_image_width, 80);
+        option_image_height = (int)typedArray.getDimension(R.styleable.OptionView_option_image_height,80);
+
         typedArray.recycle();
     }
 
-    //XMLからの各種初期化
     public void initResource() {
         this.setOnLongClickListener(longclicklistener);
         this.setOnClickListener(clicklistener);
@@ -144,7 +146,6 @@ public class OptionView extends FrameLayout {
         }
     }
 
-    //XML使わない場合(Builder経由で呼ばれたい)
     private void addOption(@DrawableRes int resId, String text, View.OnClickListener listener) {
         this.optionImgResoureceId[option_index] = resId;
         this.textviews[option_index].setText(text);
@@ -153,26 +154,18 @@ public class OptionView extends FrameLayout {
         option_index++;
     }
 
-    public void setOptionImgResourece(@DrawableRes int[] resId) {
-        optionImgResoureceId = resId;
+    private void addOption(Uri imageUri, String text, View.OnClickListener listener) {
+        this.optionImgResoureceId[option_index] = -1;
+        this.textviews[option_index].setText(text);
+        imgbuttons[option_index].setOnClickListener(listener);
+        URLImageloader task = new URLImageloader(this.imgbuttons[option_index],option_image_width,option_image_height);
+        task.execute(imageUri.toString());
+        option_index++;
     }
 
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         Log.v("View", "onSizeChanged Width:" + w + ",Height:" + h);
     }
-
-    // Regacy Code
-    /*
-    public void setOptionnum(int optionnum) {
-        this.optionnum = optionnum;
-    }
-
-     public void setOptionListeners(View.OnClickListener listeners[]){
-        for(int i = 0;i<optionnum;i++){
-            imgbuttons[i].setOnClickListener(listeners[i]);
-        }
-    }
-    */
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -184,7 +177,6 @@ public class OptionView extends FrameLayout {
         super.dispatchDraw(canvas);
     }
 
-    //XMLから入ってる情報を初期値としてセット
     public Builder addOption() {
         builder.text(titles[option_index]);
         builder.resId(optionImgResoureceId[option_index]);
@@ -196,6 +188,7 @@ public class OptionView extends FrameLayout {
         @DrawableRes
         private int resId;
         private String text;
+        private Uri imageUri;
         private View.OnClickListener listener;
 
         public Builder resId(@DrawableRes int resId) {
@@ -213,10 +206,18 @@ public class OptionView extends FrameLayout {
             return this;
         }
 
-        public void build() {
-            addOption(resId, text, listener);
+        public Builder imageUri(Uri uri) {
+            this.imageUri = uri;
+            return this;
         }
 
+        public void build() {
+            if(imageUri == null){
+                addOption(resId, text, listener);
+            }else{
+                addOption(imageUri,text, listener);
+            }
+        }
     }
 
 }

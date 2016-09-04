@@ -5,6 +5,9 @@ Screenshot
 
 <img src="https://media.giphy.com/media/l2Sq4QwqwfakDBPmo/giphy.gif" width="50%">
 
+Inspired by [Afnizar Nur Ghifari](https://dribbble.com/flamekaizar) 's UX [design](https://dribbble.com/shots/2935434-Visval-Blog-Shorthand-Animation)
+
+
 How do I use it?
 ---
 
@@ -62,12 +65,12 @@ public class MyActivity extends Activity {
               .listener(listeners[1])
               .build();
 
-    //it is possible to set params from builder
-    optionView.addOption()
-              .resId(R.drawable.copy_link_white)
-              .listener(listeners[2])
-              .text("Copy Link")
-              .build();
+    //it is possible to set image from Uri
+        optionView.addOption()
+                .imageUri(Uri.parse("http://hoge.com.png"))
+                .listener(listeners[2])
+                .text("Copy Link")
+                .build();
 
   }
 }
@@ -109,7 +112,7 @@ then you use `OptionView` in `activity_main.xml`
 
 ```
 
-**Options**
+**Java Options**
 
 - `resId(@DrawableRes int resId)` is a resource id of drawable
 - `listener(View.OnClickListener listener)` is a listener
@@ -131,11 +134,40 @@ optionView.addOption()
           .build();
 ```
 
+**XML Options**
+
+At first, you have to insert
+
+```XML
+xmlns:optionview="http://schemas.android.com/apk/res-auto"
+```
+
+in your layout xml file
+
+- `optionview:option_image_id1` is a first option image's resource reference
+- `optionview:option_image_id2` is a second option image's resource reference
+- `optionview:option_image_id3` is a third option image's resource reference
+- `optionview:option_text_id1` is a first option's title
+- `optionview:option_text_id2` is a second option's title
+- `optionview:option_text_id3` is a third option's title
+- `optionview:option_num` is a num of option, but you have to set 3 now. default is 3.
+- `optionview:src_image_id` is a main image's resource reference
+
+```java
+optionView.addOption()
+                .resId(R.drawable.copy_link_white)
+                .listener(listener)
+                .text("Copy Link")
+                .build();
+```
+
+**Tips**
+
+
+
 Requirements
 --------------
 Android 4.1+
-
-
 
 License
 -------

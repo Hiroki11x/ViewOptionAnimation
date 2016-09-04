@@ -11,6 +11,9 @@
         <attr name="option_text_id2" format="string" />
         <attr name="option_text_id3" format="string" />
 
+        <attr name="option_text_sp" format="dimension" />
+        <attr name="option_image_width" format="dimension" />
+        <attr name="option_image_height" format="dimension" />
 
         <!-- 多分、colorとreferenceどちらも指定できるんだと思う -->
         <attr name="foo" format="color|reference" />
