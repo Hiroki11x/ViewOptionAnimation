@@ -1,6 +1,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 Screenshot
+
 <img src="https://media.giphy.com/media/l2Sq4QwqwfakDBPmo/giphy.gif" width="50%">
 
 How do I use it?
