@@ -22,11 +22,12 @@ public class OptionView extends FrameLayout {
 
     private boolean is_option_appear = false;
     private int optionnum = 3;
-    private @DrawableRes int srcImageId;
-    private @DrawableRes int optionImgResoureceId[] = new int[3];
+    @DrawableRes private int srcImageId;
+    @DrawableRes private int optionImgResoureceId[] = new int[3];
+    private String titles[] = new String[3];
 
-    private ImageButton imgbutton[] = new ImageButton[3];
-    private TextView textview[] = new TextView[3];
+    private ImageButton imgbuttons[] = new ImageButton[3];
+    private TextView textviews[] = new TextView[3];
     private FrameLayout optionframe[] = new FrameLayout[3];
     private ImageView srcImage;
 
@@ -45,8 +46,8 @@ public class OptionView extends FrameLayout {
         @Override
         public boolean onLongClick(View v) {
             for(int i = 0;i<optionnum;i++){
-                SwipeAnimation.slideInAnimation(imgbutton[i]);
-                SwipeAnimation.slideInAnimation(textview[i]);
+                SwipeAnimation.slideInAnimation(imgbuttons[i]);
+                SwipeAnimation.slideInAnimation(textviews[i]);
             }
             SwipeAnimation.appearAnimation(BlackFilter);
             is_option_appear = true;
@@ -63,8 +64,8 @@ public class OptionView extends FrameLayout {
 
             is_option_appear = false;
             for(int i = 0;i<optionnum;i++){
-                SwipeAnimation.slideOutAnimation(imgbutton[i]);
-                SwipeAnimation.slideOutAnimation(textview[i]);
+                SwipeAnimation.slideOutAnimation(imgbuttons[i]);
+                SwipeAnimation.slideOutAnimation(textviews[i]);
             }
             SwipeAnimation.disappearAnimation(BlackFilter);
         }
@@ -73,7 +74,7 @@ public class OptionView extends FrameLayout {
 
     public void setOptionListeners(View.OnClickListener listeners[]){
         for(int i = 0;i<optionnum;i++){
-            imgbutton[i].setOnClickListener(listeners[i]);
+            imgbuttons[i].setOnClickListener(listeners[i]);
         }
     }
 
@@ -103,31 +104,31 @@ public class OptionView extends FrameLayout {
 
         initViewFromID(context);
         initFromXML(context, attrs);
-        initImageResource();
+        initResource();
     }
 
     //Call しない想定
     public OptionView(Context context) {
         super(context);
-        initImageResource();
+        initResource();
     }
 
     public void initViewFromID(Context context){
         View layout = LayoutInflater.from(context).inflate(R.layout.optionviewlayout, this);
         BlackFilter = (FrameLayout)layout.findViewById(R.id.black_filter);
-        imgbutton[0] = (ImageButton)layout.findViewById(R.id.imageButton);
-        imgbutton[1] = (ImageButton)layout.findViewById(R.id.imageButton2);
-        imgbutton[2] = (ImageButton)layout.findViewById(R.id.imageButton3);
-        textview[0] = (TextView)layout.findViewById(R.id.textView);
-        textview[1] = (TextView)layout.findViewById(R.id.textView2);
-        textview[2] = (TextView)layout.findViewById(R.id.textView3);
+        imgbuttons[0] = (ImageButton)layout.findViewById(R.id.imageButton);
+        imgbuttons[1] = (ImageButton)layout.findViewById(R.id.imageButton2);
+        imgbuttons[2] = (ImageButton)layout.findViewById(R.id.imageButton3);
+        textviews[0] = (TextView)layout.findViewById(R.id.textView);
+        textviews[1] = (TextView)layout.findViewById(R.id.textView2);
+        textviews[2] = (TextView)layout.findViewById(R.id.textView3);
         optionframe[0] = (FrameLayout)layout.findViewById(R.id.framelayout);
         optionframe[0] = (FrameLayout)layout.findViewById(R.id.framelayout2);
         optionframe[0] = (FrameLayout)layout.findViewById(R.id.framelayout3);
         srcImage = (ImageView)layout.findViewById(R.id.imageView);
         for(int i = 0;i<optionnum;i++){
-            imgbutton[i].setVisibility(View.INVISIBLE);
-            textview[i].setVisibility(View.INVISIBLE);
+            imgbuttons[i].setVisibility(View.INVISIBLE);
+            textviews[i].setVisibility(View.INVISIBLE);
         }
         BlackFilter.setVisibility(View.INVISIBLE);
     }
@@ -140,25 +141,28 @@ public class OptionView extends FrameLayout {
         optionImgResoureceId[0] = typedArray.getResourceId(R.styleable.OptionView_option_image_id1, 0);
         optionImgResoureceId[1] = typedArray.getResourceId(R.styleable.OptionView_option_image_id2, 0);
         optionImgResoureceId[2] = typedArray.getResourceId(R.styleable.OptionView_option_image_id3, 0);
+        titles[0] = typedArray.getString(R.styleable.OptionView_option_text_id1);
+        titles[1] = typedArray.getString(R.styleable.OptionView_option_text_id2);
+        titles[2] = typedArray.getString(R.styleable.OptionView_option_text_id3);
         typedArray.recycle();
     }
 
     //XMLからの各種初期化
-    public void initImageResource(){
+    public void initResource(){
         this.setOnLongClickListener(longclicklistener);
         this.setOnClickListener(clicklistener);
         srcImage.setImageResource(srcImageId);
         for(int i = 0; i<optionnum ;i++){
-            this.imgbutton[i].setImageResource(optionImgResoureceId[i]);
+            this.imgbuttons[i].setImageResource(optionImgResoureceId[i]);
         }
     }
 
     //XML使わない場合
     public void addOption(@DrawableRes int resId,String text ,View.OnClickListener listener){
         this.optionImgResoureceId[option_index] = resId;
-        this.textview[option_index].setText(text);
-        imgbutton[option_index].setOnClickListener(listener);
-        this.imgbutton[option_index].setImageResource(resId);
+        this.textviews[option_index].setText(text);
+        imgbuttons[option_index].setOnClickListener(listener);
+        this.imgbuttons[option_index].setImageResource(resId);
         option_index++;
     }
 

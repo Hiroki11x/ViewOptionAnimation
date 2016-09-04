@@ -7,6 +7,10 @@
         <attr name="option_image_id2" format="reference" />
         <attr name="option_image_id3" format="reference" />
 
+        <attr name="option_text_id1" format="string" />
+        <attr name="option_text_id2" format="string" />
+        <attr name="option_text_id3" format="string" />
+
 
         <!-- 多分、colorとreferenceどちらも指定できるんだと思う -->
         <attr name="foo" format="color|reference" />
@@ -17,5 +21,4 @@
     </declare-styleable>
 </resources>
 
-    <!--今の所適当-->
-    <!--Viewで必要になりそうなパラメタをattrs.xmlに定義します。-->
+    <!--今の所適当--><!--Viewで必要になりそうなパラメタをattrs.xmlに定義します。-->

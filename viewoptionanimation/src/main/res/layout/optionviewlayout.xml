@@ -1,94 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
+    <FrameLayout
+        android:id="@+id/black_filter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="#000000" />
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginLeft="24dp">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter" />
+            style="@style/OptionButton" />
 
-        <FrameLayout
-            android:id="@+id/framelayout"
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="left|center_vertical"
-            android:layout_marginLeft="24dp">
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="#00FFFFFF"
-                android:layout_marginBottom="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView"
-                android:layout_gravity="center"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="12dp" />
-        </FrameLayout>
-
-
-        <FrameLayout
-            android:id="@+id/framelayout2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center">
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="#00FFFFFF"
-                android:layout_marginBottom="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView2"
-                android:layout_gravity="center"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="12dp" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/framelayout3"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="right|center_vertical"
-            android:layout_marginRight="24dp">
-
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="#00FFFFFF"
-                android:layout_marginBottom="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView3"
-                android:layout_gravity="center"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="12dp" />
-        </FrameLayout>
-
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/black_filter"
-            android:layout_gravity="center"
-            android:background="#000000"/>
-
+            android:layout_height="wrap_content"
+            style="@style/SmallFont" />
     </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/framelayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/OptionButton"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/SmallFont"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/framelayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginRight="24dp">
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/OptionButton"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/SmallFont" />
+    </FrameLayout>
+
+</FrameLayout>

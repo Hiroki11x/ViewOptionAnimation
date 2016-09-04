@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="FontAttr">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
+    <style name="SmallFont" parent="@style/FontAttr">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="MiddleFont" parent="@style/FontAttr">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="LargeFont" parent="@style/FontAttr">
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="OptionButton">
+        <item name="android:layout_marginBottom">12dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/circle</item>
+        <item name="android:padding">7dp</item>
+    </style>
+
+</resources>

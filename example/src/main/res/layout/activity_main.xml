@@ -12,16 +12,16 @@
 
     <hiroki11x.viewoptionanimation.OptionView
         android:id="@+id/optionView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        optionview:src_image_id="@drawable/sample_image"
         optionview:option_image_id1="@drawable/share_symbol_white"
         optionview:option_image_id2="@drawable/eye_white"
         optionview:option_image_id3="@drawable/copy_link_white"
         optionview:option_num="3"
-        android:layout_gravity="center" />
+        optionview:src_image_id="@drawable/sample_image" />
 </FrameLayout>
