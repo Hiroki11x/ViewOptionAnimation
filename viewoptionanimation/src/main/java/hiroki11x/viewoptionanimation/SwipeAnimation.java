@@ -21,10 +21,8 @@ public class SwipeAnimation {
 
         // 移動アニメーション
         TranslateAnimation trans = new TranslateAnimation(
-                Animation.RELATIVE_TO_SELF, 0,//左右の開始位置
-                Animation.RELATIVE_TO_SELF, 0,//左右の終了位置
-                Animation.RELATIVE_TO_SELF, 6,//上下の開始位置
-                Animation.RELATIVE_TO_SELF, 0);//上下の最終位置
+            0,0,v.getHeight()+1000,0
+        );
         trans.setDuration(500);
 
         // アニメーションの組み合わせ
@@ -50,10 +48,8 @@ public class SwipeAnimation {
 
         // 移動アニメーション
         TranslateAnimation trans = new TranslateAnimation(
-                Animation.RELATIVE_TO_SELF, 0,//左右の開始位置
-                Animation.RELATIVE_TO_SELF, 0,//左右の終了位置
-                Animation.RELATIVE_TO_SELF, 0,//上下の開始位置
-                Animation.RELATIVE_TO_SELF, 6);//上下の最終位置
+                0,0,0,v.getHeight()+1000
+        );
         trans.setDuration(500);
 
         // アニメーションの組み合わせ
@@ -102,7 +98,7 @@ public class SwipeAnimation {
 
     public static void appearAnimation(View v) {
         // 透過アニメーション
-        AlphaAnimation alpha = new AlphaAnimation(0.0f, 0.6f);
+        AlphaAnimation alpha = new AlphaAnimation(0.0f, 0.5f);
         alpha.setDuration(200);
 
 

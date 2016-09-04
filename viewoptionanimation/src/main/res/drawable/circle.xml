@@ -10,14 +10,14 @@
 
     <item android:state_focused="true">
         <shape android:shape="oval">
-            <solid android:color="#77000000" />
+            <solid android:color="#AA000000" />
             <stroke android:width="0.5dp" android:color="#FFFFFF" />
         </shape>
     </item>
 
     <item>
         <shape android:shape="oval">
-            <solid android:color="#77000000" />
+            <solid android:color="#99000000" />
             <stroke android:width="0.5dp" android:color="#FFFFFF" />
         </shape>
     </item>
