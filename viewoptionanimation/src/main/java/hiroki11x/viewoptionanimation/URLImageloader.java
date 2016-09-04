@@ -3,6 +3,7 @@ package hiroki11x.viewoptionanimation;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -14,21 +15,27 @@ import java.net.URL;
 /**
  * Created by hirokinaganuma on 16/09/04.
  */
-// Image取得用スレッドクラス
+
 public class URLImageloader extends AsyncTask<String,Void,Bitmap> {
     private ImageView image;
+    private int width,height;
 
     public URLImageloader(ImageButton _image, int w, int h) {
         image = _image;
+        width = w;
+        height = h;
     }
     @Override
     protected Bitmap doInBackground(String... params) {
         Bitmap image;
+        BitmapFactory.Options options = new  BitmapFactory.Options();
+        options.inMutable = true;
         try {
             URL imageUrl = new URL(params[0]);
             InputStream imageIs;
             imageIs = imageUrl.openStream();
-            image = BitmapFactory.decodeStream(imageIs);
+            image = BitmapFactory.decodeStream(imageIs,null,options);
+
             return image;
         } catch (MalformedURLException e) {
             return null;
@@ -38,7 +45,11 @@ public class URLImageloader extends AsyncTask<String,Void,Bitmap> {
     }
     @Override
     protected void onPostExecute(Bitmap result) {
-        // 取得した画像をImageViewに設定します。
+        /** for API 19~ **/
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            result.setWidth(width);
+            result.setHeight(height);
+        }
         image.setImageBitmap(result);
     }
 }

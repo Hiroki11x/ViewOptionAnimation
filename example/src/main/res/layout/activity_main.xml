@@ -19,12 +19,15 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
+        optionview:option_image_height="33dp"
         optionview:option_image_id1="@drawable/share_symbol_white"
         optionview:option_image_id2="@drawable/eye_white"
         optionview:option_image_id3="@drawable/copy_link_white"
+        optionview:option_image_width="33dp"
         optionview:option_num="3"
         optionview:option_text_id1="Share"
         optionview:option_text_id2="View Detail"
         optionview:option_text_id3="Copy Link"
+        optionview:option_text_sp="3sp"
         optionview:src_image_id="@drawable/sample_image" />
 </FrameLayout>

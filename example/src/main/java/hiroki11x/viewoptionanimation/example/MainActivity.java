@@ -40,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
         };
 
         optionView = (OptionView) findViewById(R.id.optionView);
-
-        //以下のようなセットの仕方が可能(推奨)
-        //一応XMLからもできる
         optionView.setSrcImageResource(R.drawable.sample_image);
 
         optionView.addOption()
@@ -51,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
                 .text("Share")
                 .build();
 
-        //XMLのattributeからセットすることも可能
         optionView.addOption()
                 .listener(listeners[1])
                 .build();
