@@ -23,5 +23,8 @@
         optionview:option_image_id2="@drawable/eye_white"
         optionview:option_image_id3="@drawable/copy_link_white"
         optionview:option_num="3"
+        optionview:option_text_id1="Share"
+        optionview:option_text_id2="View Detail"
+        optionview:option_text_id3="Copy Link"
         optionview:src_image_id="@drawable/sample_image" />
 </FrameLayout>

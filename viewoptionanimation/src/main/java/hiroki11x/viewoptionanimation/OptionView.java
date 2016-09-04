@@ -18,17 +18,20 @@ import android.widget.TextView;
  */
 public class OptionView extends FrameLayout {
 
-    private static int option_index = 0;
+    private final Builder builder = new Builder();
+
+    private int option_index = 0;
 
     private boolean is_option_appear = false;
     private int optionnum = 3;
-    @DrawableRes private int srcImageId;
-    @DrawableRes private int optionImgResoureceId[] = new int[3];
+    @DrawableRes
+    private int srcImageId;
+    @DrawableRes
+    private int optionImgResoureceId[] = new int[3];
     private String titles[] = new String[3];
 
     private ImageButton imgbuttons[] = new ImageButton[3];
     private TextView textviews[] = new TextView[3];
-    private FrameLayout optionframe[] = new FrameLayout[3];
     private ImageView srcImage;
 
     private FrameLayout BlackFilter;
@@ -45,7 +48,7 @@ public class OptionView extends FrameLayout {
     View.OnLongClickListener longclicklistener = new OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
-            for(int i = 0;i<optionnum;i++){
+            for (int i = 0; i < optionnum; i++) {
                 SwipeAnimation.slideInAnimation(imgbuttons[i]);
                 SwipeAnimation.slideInAnimation(textviews[i]);
             }
@@ -58,25 +61,18 @@ public class OptionView extends FrameLayout {
     View.OnClickListener clicklistener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            if(!is_option_appear){
+            if (!is_option_appear) {
                 return;
             }
 
             is_option_appear = false;
-            for(int i = 0;i<optionnum;i++){
+            for (int i = 0; i < optionnum; i++) {
                 SwipeAnimation.slideOutAnimation(imgbuttons[i]);
                 SwipeAnimation.slideOutAnimation(textviews[i]);
             }
             SwipeAnimation.disappearAnimation(BlackFilter);
         }
     };
-
-
-    public void setOptionListeners(View.OnClickListener listeners[]){
-        for(int i = 0;i<optionnum;i++){
-            imgbuttons[i].setOnClickListener(listeners[i]);
-        }
-    }
 
     // for api 21 ~
     /*
@@ -88,17 +84,10 @@ public class OptionView extends FrameLayout {
     //Call しない想定
     public OptionView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.OptionView,
-                defStyleAttr, 0);
-        optionnum = typedArray.getInt(R.styleable.OptionView_option_num, 0);//XML設定された項目はここで読み取れる
-        srcImageId = typedArray.getInt(R.styleable.OptionView_src_image_id, 0);//XML設定された項目はここで読み取れる
-        typedArray.recycle();
-        initFromXML(context, attrs);
     }
 
 
     //ここがデフォで呼ばれてる
-    //XMLからの設定はここ
     public OptionView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -113,20 +102,18 @@ public class OptionView extends FrameLayout {
         initResource();
     }
 
-    public void initViewFromID(Context context){
+    //IDの関連づけなど
+    public void initViewFromID(Context context) {
         View layout = LayoutInflater.from(context).inflate(R.layout.optionviewlayout, this);
-        BlackFilter = (FrameLayout)layout.findViewById(R.id.black_filter);
-        imgbuttons[0] = (ImageButton)layout.findViewById(R.id.imageButton);
-        imgbuttons[1] = (ImageButton)layout.findViewById(R.id.imageButton2);
-        imgbuttons[2] = (ImageButton)layout.findViewById(R.id.imageButton3);
-        textviews[0] = (TextView)layout.findViewById(R.id.textView);
-        textviews[1] = (TextView)layout.findViewById(R.id.textView2);
-        textviews[2] = (TextView)layout.findViewById(R.id.textView3);
-        optionframe[0] = (FrameLayout)layout.findViewById(R.id.framelayout);
-        optionframe[0] = (FrameLayout)layout.findViewById(R.id.framelayout2);
-        optionframe[0] = (FrameLayout)layout.findViewById(R.id.framelayout3);
-        srcImage = (ImageView)layout.findViewById(R.id.imageView);
-        for(int i = 0;i<optionnum;i++){
+        BlackFilter = (FrameLayout) layout.findViewById(R.id.black_filter);
+        imgbuttons[0] = (ImageButton) layout.findViewById(R.id.imageButton);
+        imgbuttons[1] = (ImageButton) layout.findViewById(R.id.imageButton2);
+        imgbuttons[2] = (ImageButton) layout.findViewById(R.id.imageButton3);
+        textviews[0] = (TextView) layout.findViewById(R.id.textView);
+        textviews[1] = (TextView) layout.findViewById(R.id.textView2);
+        textviews[2] = (TextView) layout.findViewById(R.id.textView3);
+        srcImage = (ImageView) layout.findViewById(R.id.imageView);
+        for (int i = 0; i < optionnum; i++) {
             imgbuttons[i].setVisibility(View.INVISIBLE);
             textviews[i].setVisibility(View.INVISIBLE);
         }
@@ -134,7 +121,7 @@ public class OptionView extends FrameLayout {
     }
 
 
-    public void initFromXML(Context context, AttributeSet attrs){
+    public void initFromXML(Context context, AttributeSet attrs) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.OptionView);
         optionnum = typedArray.getInt(R.styleable.OptionView_option_num, 0);
         srcImageId = typedArray.getResourceId(R.styleable.OptionView_src_image_id, 0);
@@ -148,17 +135,17 @@ public class OptionView extends FrameLayout {
     }
 
     //XMLからの各種初期化
-    public void initResource(){
+    public void initResource() {
         this.setOnLongClickListener(longclicklistener);
         this.setOnClickListener(clicklistener);
         srcImage.setImageResource(srcImageId);
-        for(int i = 0; i<optionnum ;i++){
+        for (int i = 0; i < optionnum; i++) {
             this.imgbuttons[i].setImageResource(optionImgResoureceId[i]);
         }
     }
 
-    //XML使わない場合
-    public void addOption(@DrawableRes int resId,String text ,View.OnClickListener listener){
+    //XML使わない場合(Builder経由で呼ばれたい)
+    private void addOption(@DrawableRes int resId, String text, View.OnClickListener listener) {
         this.optionImgResoureceId[option_index] = resId;
         this.textviews[option_index].setText(text);
         imgbuttons[option_index].setOnClickListener(listener);
@@ -166,17 +153,26 @@ public class OptionView extends FrameLayout {
         option_index++;
     }
 
-    public void setOptionnum(int optionnum) {
-        this.optionnum = optionnum;
-    }
-
     public void setOptionImgResourece(@DrawableRes int[] resId) {
         optionImgResoureceId = resId;
     }
 
-    protected void onSizeChanged(int w, int h, int oldw, int oldh){
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         Log.v("View", "onSizeChanged Width:" + w + ",Height:" + h);
     }
+
+    // Regacy Code
+    /*
+    public void setOptionnum(int optionnum) {
+        this.optionnum = optionnum;
+    }
+
+     public void setOptionListeners(View.OnClickListener listeners[]){
+        for(int i = 0;i<optionnum;i++){
+            imgbuttons[i].setOnClickListener(listeners[i]);
+        }
+    }
+    */
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -187,4 +183,40 @@ public class OptionView extends FrameLayout {
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
     }
+
+    //XMLから入ってる情報を初期値としてセット
+    public Builder addOption() {
+        builder.text(titles[option_index]);
+        builder.resId(optionImgResoureceId[option_index]);
+        return builder;
+    }
+
+    public class Builder {
+
+        @DrawableRes
+        private int resId;
+        private String text;
+        private View.OnClickListener listener;
+
+        public Builder resId(@DrawableRes int resId) {
+            this.resId = resId;
+            return this;
+        }
+
+        public Builder listener(View.OnClickListener listener) {
+            this.listener = listener;
+            return this;
+        }
+
+        public Builder text(String text) {
+            this.text = text;
+            return this;
+        }
+
+        public void build() {
+            addOption(resId, text, listener);
+        }
+
+    }
+
 }

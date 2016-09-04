@@ -20,21 +20,21 @@ public class MainActivity extends AppCompatActivity {
         listeners[0] = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Copy Link",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Share", Toast.LENGTH_SHORT).show();
             }
         };
 
         listeners[1] = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Share",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "View Detail", Toast.LENGTH_SHORT).show();
             }
         };
 
         listeners[2] = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"View Detail",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Copy Link", Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -43,8 +43,22 @@ public class MainActivity extends AppCompatActivity {
         //以下のようなセットの仕方が可能(推奨)
         //一応XMLからもできる
         optionView.setSrcImageResource(R.drawable.sample_image);
-        optionView.addOption(R.drawable.copy_link_white,"Copy Link",listeners[0]);
-        optionView.addOption(R.drawable.share_symbol_white,"Share",listeners[1]);
-        optionView.addOption(R.drawable.eye_white,"View Detail",listeners[2]);
+
+        optionView.addOption()
+                .resId(R.drawable.share_symbol_white)
+                .listener(listeners[0])
+                .text("Share")
+                .build();
+
+        //XMLのattributeからセットすることも可能
+        optionView.addOption()
+                .listener(listeners[1])
+                .build();
+
+        optionView.addOption()
+                .resId(R.drawable.copy_link_white)
+                .listener(listeners[2])
+                .text("Copy Link")
+                .build();
     }
 }

@@ -27,15 +27,15 @@
 
         <ImageButton
             android:id="@+id/imageButton"
+            style="@style/OptionButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/OptionButton" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/textView"
+            style="@style/SmallFont"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/SmallFont" />
+            android:layout_height="wrap_content" />
     </FrameLayout>
 
 
@@ -47,15 +47,15 @@
 
         <ImageButton
             android:id="@+id/imageButton2"
+            style="@style/OptionButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/OptionButton"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/textView2"
+            style="@style/SmallFont"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/SmallFont"/>
+            android:layout_height="wrap_content" />
     </FrameLayout>
 
     <FrameLayout
@@ -67,15 +67,15 @@
 
         <ImageButton
             android:id="@+id/imageButton3"
+            style="@style/OptionButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/OptionButton"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/textView3"
+            style="@style/SmallFont"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/SmallFont" />
+            android:layout_height="wrap_content" />
     </FrameLayout>
 
 </FrameLayout>

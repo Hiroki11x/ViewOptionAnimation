@@ -21,7 +21,7 @@ public class SwipeAnimation {
 
         // 移動アニメーション
         TranslateAnimation trans = new TranslateAnimation(
-            0,0,v.getHeight()+1000,0
+                0, 0, v.getHeight() + 1000, 0
         );
         trans.setDuration(500);
 
@@ -48,7 +48,7 @@ public class SwipeAnimation {
 
         // 移動アニメーション
         TranslateAnimation trans = new TranslateAnimation(
-                0,0,0,v.getHeight()+1000
+                0, 0, 0, v.getHeight() + 1000
         );
         trans.setDuration(500);
 
@@ -68,9 +68,11 @@ public class SwipeAnimation {
             public void onAnimationEnd(Animation animation) {
                 v.setVisibility(View.GONE);
             }
+
             @Override
             public void onAnimationRepeat(Animation animation) {
             }
+
             @Override
             public void onAnimationStart(Animation animation) {
             }
