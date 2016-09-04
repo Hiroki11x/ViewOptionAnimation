@@ -14,14 +14,5 @@
         <attr name="option_text_sp" format="dimension" />
         <attr name="option_image_width" format="dimension" />
         <attr name="option_image_height" format="dimension" />
-
-        <!-- 多分、colorとreferenceどちらも指定できるんだと思う -->
-        <attr name="foo" format="color|reference" />
-    </declare-styleable>
-
-    <declare-styleable name="Themes">
-        <attr name="originalViewStyle" format="reference" />
     </declare-styleable>
 </resources>
-
-    <!--今の所適当--><!--Viewで必要になりそうなパラメタをattrs.xmlに定義します。-->
