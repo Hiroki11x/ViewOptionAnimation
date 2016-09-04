@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release' // 追加
 
 android {
     compileSdkVersion 23
@@ -22,4 +23,14 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
+}
+
+// 以下、必要な情報に書き換える
+publish {
+    userOrg = 'hiroki11x'
+    groupId = 'jp.hiroki11x'
+    artifactId = 'optionviewanimation'
+    publishVersion = "0.0.1"
+    desc = 'View whitch have option button and animation.'
+    website = 'https://github.com/Hiroki11x/ViewOptionAnimation'
 }

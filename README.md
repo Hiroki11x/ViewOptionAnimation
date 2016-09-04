@@ -12,7 +12,7 @@ How do I use it?
 ##### Dependencies
 ```groovy
 dependencies {
-    compile 'hiroki11x.optionviewanimation:1.0.0'
+    compile 'jp.hiroki11x:optionviewanimation:0.0.1'
 }
 ```
 

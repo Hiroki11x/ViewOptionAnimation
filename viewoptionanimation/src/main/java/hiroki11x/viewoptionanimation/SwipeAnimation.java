@@ -1,9 +1,11 @@
 package hiroki11x.viewoptionanimation;
 
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
 
 /**
@@ -17,13 +19,14 @@ public class SwipeAnimation {
         v.setVisibility(View.VISIBLE);
         // 透過アニメーション
         AlphaAnimation alpha = new AlphaAnimation(0.0f, 1.0f);
-        alpha.setDuration(500);
+        alpha.setDuration(300);
 
         // 移動アニメーション
         TranslateAnimation trans = new TranslateAnimation(
-                0, 0, v.getHeight() + 1000, 0
+                0, 0, v.getHeight() + 500, 0
         );
-        trans.setDuration(500);
+        trans.setDuration(300);
+        trans.setInterpolator(new DecelerateInterpolator());
 
         // アニメーションの組み合わせ
         AnimationSet set = new AnimationSet(false);
@@ -44,13 +47,14 @@ public class SwipeAnimation {
 
         // 透過アニメーション
         AlphaAnimation alpha = new AlphaAnimation(1.0f, 0.0f);
-        alpha.setDuration(500);
+        alpha.setDuration(250);
 
         // 移動アニメーション
         TranslateAnimation trans = new TranslateAnimation(
-                0, 0, 0, v.getHeight() + 1000
+                0, 0, 0, v.getHeight() + 500
         );
-        trans.setDuration(500);
+        trans.setDuration(250);
+        trans.setInterpolator(new AccelerateInterpolator());
 
         // アニメーションの組み合わせ
         AnimationSet set = new AnimationSet(false);
