@@ -3,6 +3,7 @@ package hiroki11x.viewoptionanimation;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -153,6 +154,15 @@ public class OptionView extends FrameLayout {
         option_index++;
     }
 
+    private void addOption(Uri imageUri, String text, View.OnClickListener listener) {
+        this.optionImgResoureceId[option_index] = -1;
+        this.textviews[option_index].setText(text);
+        imgbuttons[option_index].setOnClickListener(listener);
+        URLImageloader task = new URLImageloader(this.imgbuttons[option_index],10,10);
+        task.execute(imageUri.toString());
+        option_index++;
+    }
+
     public void setOptionImgResourece(@DrawableRes int[] resId) {
         optionImgResoureceId = resId;
     }
@@ -196,6 +206,7 @@ public class OptionView extends FrameLayout {
         @DrawableRes
         private int resId;
         private String text;
+        private Uri imageUri;
         private View.OnClickListener listener;
 
         public Builder resId(@DrawableRes int resId) {
@@ -213,10 +224,18 @@ public class OptionView extends FrameLayout {
             return this;
         }
 
-        public void build() {
-            addOption(resId, text, listener);
+        public Builder imageUri(Uri uri) {
+            this.imageUri = uri;
+            return this;
         }
 
+        public void build() {
+            if(imageUri == null){
+                addOption(resId, text, listener);
+            }else{
+                addOption(imageUri,text, listener);
+            }
+        }
     }
 
 }

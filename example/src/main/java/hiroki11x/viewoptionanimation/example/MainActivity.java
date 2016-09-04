@@ -1,5 +1,6 @@
 package hiroki11x.viewoptionanimation.example;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         optionView.addOption()
-                .resId(R.drawable.copy_link_white)
+                .imageUri(Uri.parse("http://icons.iconarchive.com/icons/custom-icon-design/mono-general-2/512/copy-icon.png"))
                 .listener(listeners[2])
                 .text("Copy Link")
                 .build();
