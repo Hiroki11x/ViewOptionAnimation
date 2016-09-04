@@ -3,9 +3,9 @@
 
 Screenshot
 
-<img src="https://media.giphy.com/media/l2Sq4QwqwfakDBPmo/giphy.gif" width="50%">
+<img src="https://media.giphy.com/media/26uf70we2A1FnWccE/giphy.gif" width="50%">
 
-Inspired by [Afnizar Nur Ghifari](https://dribbble.com/flamekaizar) 's UX [design](https://dribbble.com/shots/2935434-Visval-Blog-Shorthand-Animation)
+Inspired by [Afnizar Nur Ghifari](https://dribbble.com/flamekaizar) 's UX [design](https://dribbble.com/shots/2935434-Visval-Blog-Shorthand-Animation) Thank you.
 
 
 How do I use it?
@@ -152,6 +152,9 @@ in your layout xml file
 - `optionview:option_text_id3` is a third option's title
 - `optionview:option_num` is a num of option, but you have to set 3 now. default is 3.
 - `optionview:src_image_id` is a main image's resource reference
+- `optionview:option_text_sp` is a option's text size dimension
+- `optionview:option_image_width` is a option image's width (it is valid when you get option's image from Uri)
+- `optionview:option_image_height` is a option image's height (it is valid when you get option's image from Uri)
 
 ```java
 optionView.addOption()
@@ -162,6 +165,15 @@ optionView.addOption()
 ```
 
 **Tips**
+you can set option's image from uri
+
+```java
+optionView.addOption()
+                .imageUri(Uri.parse("http://icons.iconarchive.com/icons/custom-icon-design/mono-general-2/512/copy-icon.png"))
+                .listener(listener)
+                .text("Copy Link")
+                .build();
+```
 
 
 
