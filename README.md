@@ -1,4 +1,5 @@
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+ [ ![Download](https://api.bintray.com/packages/hiroki11x/maven/optionviewanimation/images/download.svg) ](https://bintray.com/hiroki11x/maven/optionviewanimation/_latestVersion)
 
 Screenshot
 
