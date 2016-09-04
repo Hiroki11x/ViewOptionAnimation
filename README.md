@@ -185,7 +185,7 @@ Android 4.1+
 License
 -------
 
-    Copyright 2015 Hiroki11x
+    Copyright 2016 Hiroki11x (Hiroki Naganuma)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
