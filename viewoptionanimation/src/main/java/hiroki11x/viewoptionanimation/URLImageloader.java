@@ -15,7 +15,7 @@ import java.net.URL;
  * Created by hirokinaganuma on 16/09/04.
  */
 // Image取得用スレッドクラス
-class URLImageloader extends AsyncTask<String,Void,Bitmap> {
+public class URLImageloader extends AsyncTask<String,Void,Bitmap> {
     private ImageView image;
 
     public URLImageloader(ImageButton _image, int w, int h) {
