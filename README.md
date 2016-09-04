@@ -117,6 +117,7 @@ then you use `OptionView` in `activity_main.xml`
 - `resId(@DrawableRes int resId)` is a resource id of drawable
 - `listener(View.OnClickListener listener)` is a listener
 - `text(String text) ` is a text.
+- `imageUri(Uri uri) ` is a uri of image resource.
 
 ```java
 optionView.addOption()
@@ -169,7 +170,7 @@ you can set option's image from uri
 
 ```java
 optionView.addOption()
-                .imageUri(Uri.parse("http://icons.iconarchive.com/icons/custom-icon-design/mono-general-2/512/copy-icon.png"))
+                .imageUri(Uri.parse("http://hoge.com.png"))
                 .listener(listener)
                 .text("Copy Link")
                 .build();
